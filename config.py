@@ -2,8 +2,36 @@
 Configuration settings for Fast YOLO Object Detection with Smart Classification
 """
 
-# Fast YOLO Detection settings
-YOLO_MODEL = "yolov8n.pt"  # YOLOv8 nano for fastest performance
+# YOLO Model Selection - Choose based on your needs
+# 
+# COCO Models (80 classes - limited dataset):
+YOLO_MODEL = "yolov8n.pt"  # YOLOv8 nano - fastest, 80 classes
+# YOLO_MODEL = "yolov8s.pt"  # Small model, better accuracy, 80 classes
+# YOLO_MODEL = "yolov8m.pt"  # Medium model, even better accuracy, 80 classes
+# YOLO_MODEL = "yolov8l.pt"  # Large model, high accuracy, 80 classes
+# YOLO_MODEL = "yolov8x.pt"  # Extra large model, best accuracy, 80 classes
+#
+# For MUCH LARGER datasets (1000+ classes), try these:
+# 
+# Open Images Dataset models (600+ classes):
+# YOLO_MODEL = "yolov5s-oiv7.pt"     # Open Images v7, 601 classes
+# YOLO_MODEL = "yolov8n-oiv7.pt"     # YOLOv8 nano on Open Images
+#
+# LVIS Dataset models (1200+ classes):
+# YOLO_MODEL = "yolov8n-lvis.pt"     # LVIS dataset, 1203 classes
+# YOLO_MODEL = "yolov8s-lvis.pt"     # Better accuracy on LVIS
+#
+# Objects365 Dataset (365 classes - more electronics):
+# YOLO_MODEL = "yolov8n-objects365.pt"  # Objects365, good for electronics
+#
+# Custom models (train your own or download from community):
+# YOLO_MODEL = "path/to/your/custom_model.pt"
+# YOLO_MODEL = "electronics_detection.pt"  # Example custom electronics model
+#
+# To download larger dataset models, you may need:
+# pip install ultralytics[export]
+# Or find community models on Hugging Face, Roboflow, etc.
+
 CONFIDENCE_THRESHOLD = 0.5
 IOU_THRESHOLD = 0.4
 

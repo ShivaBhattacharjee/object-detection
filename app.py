@@ -172,6 +172,13 @@ class RealtimeDetectionApp:
         logger.info(f"Avg detection time: {perf_stats.get('avg_detection_time', 0)*1000:.1f}ms")
         logger.info(f"Detection device: {perf_stats.get('device', 'Unknown')}")
         
+        # Model information
+        if hasattr(self.detector, 'classifier'):
+            total_classes = self.detector.classifier.get_total_classes()
+            categories = self.detector.classifier.get_all_categories()
+            logger.info(f"Model classes: {total_classes}")
+            logger.info(f"Categories: {', '.join(categories)}")
+        
         if detections:
             logger.info("Current objects:")
             for det in detections:

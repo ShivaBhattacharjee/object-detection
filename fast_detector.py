@@ -10,7 +10,7 @@ import time
 from typing import List, Dict, Tuple
 from ultralytics import YOLO
 
-from config import CONFIDENCE_THRESHOLD, IOU_THRESHOLD
+from config import CONFIDENCE_THRESHOLD, IOU_THRESHOLD, YOLO_MODEL
 from smart_classifier import SmartObjectClassifier
 
 logger = logging.getLogger(__name__)
@@ -28,16 +28,25 @@ class FastObjectDetector:
     def initialize(self) -> bool:
         """Initialize YOLO model"""
         try:
-            logger.info("🚀 Loading YOLOv8 model...")
-            # Use YOLOv8 nano for fastest performance
-            self.model = YOLO('yolov8n.pt')  # This will download if not present
+            logger.info(f"🚀 Loading YOLO model: {YOLO_MODEL}")
+            # Use configurable YOLO model
+            self.model = YOLO(YOLO_MODEL)  # This will download if not present
+            
+            # Initialize the classifier with the model to extract class names
+            logger.info("📋 Initializing dynamic class names from model...")
+            self.classifier.initialize_with_model(self.model)
             
             # Warm up the model
             logger.info("🔥 Warming up model...")
             dummy_frame = np.zeros((640, 640, 3), dtype=np.uint8)
             self.model(dummy_frame, verbose=False)
             
-            logger.info("✅ YOLOv8 model loaded and ready")
+            # Log model information
+            total_classes = self.classifier.get_total_classes()
+            categories = self.classifier.get_all_categories()
+            logger.info(f"✅ YOLO model ready with {total_classes} classes")
+            logger.info(f"📊 Available categories: {', '.join(categories)}")
+            
             return True
             
         except Exception as e:

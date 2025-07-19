@@ -5,7 +5,9 @@ Configuration settings for Fast YOLO Object Detection with Smart Classification
 # YOLO Model Selection - Choose based on your needs
 # 
 # COCO Models (80 classes - limited dataset):
-YOLO_MODEL = "yolov8n.pt"  # YOLOv8 nano - fastest, 80 classes
+# YOLO_MODEL = "yolov8n-oiv7.pt"  # Open Images v7, 601 classes
+YOLO_MODEL = "yolov8s-oiv7.pt"  # Larger Open Images model, 601 classes, better for multi-object
+# YOLO_MODEL = "yolov8n-lvis.pt"  # LVIS dataset, 1203 classes - try this later
 # YOLO_MODEL = "yolov8s.pt"  # Small model, better accuracy, 80 classes
 # YOLO_MODEL = "yolov8m.pt"  # Medium model, even better accuracy, 80 classes
 # YOLO_MODEL = "yolov8l.pt"  # Large model, high accuracy, 80 classes
@@ -32,8 +34,8 @@ YOLO_MODEL = "yolov8n.pt"  # YOLOv8 nano - fastest, 80 classes
 # pip install ultralytics[export]
 # Or find community models on Hugging Face, Roboflow, etc.
 
-CONFIDENCE_THRESHOLD = 0.5
-IOU_THRESHOLD = 0.4
+CONFIDENCE_THRESHOLD = 0.25  # Very low threshold for detecting both phone + iPad
+IOU_THRESHOLD = 0.2         # Very low IOU for overlapping/close objects
 
 # Display settings
 WINDOW_NAME = "Fast Object Detection with Smart Classification"
@@ -52,7 +54,7 @@ FRAME_HEIGHT = 480
 # Performance settings
 TARGET_FPS = 30
 SKIP_FRAMES = 0  # Process every frame for smooth detection
-MAX_DETECTIONS_PER_FRAME = 20  # Allow more detections
+MAX_DETECTIONS_PER_FRAME = 50  # Allow many more detections for multi-object scenes
 
 # Smart classification settings
 ENABLE_SCENE_ANALYSIS = True

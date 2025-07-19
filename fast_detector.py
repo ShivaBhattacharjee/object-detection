@@ -61,8 +61,14 @@ class FastObjectDetector:
         start_time = time.time()
         
         try:
-            # Run YOLO inference
-            results = self.model(frame, conf=CONFIDENCE_THRESHOLD, iou=IOU_THRESHOLD, verbose=False)
+            # Run YOLO inference with optimized settings for multi-object detection
+            results = self.model(
+                frame, 
+                conf=CONFIDENCE_THRESHOLD,  # Lower confidence for more detections
+                iou=IOU_THRESHOLD,          # Lower IOU to detect overlapping objects
+                max_det=50,                 # Allow up to 50 detections per image
+                verbose=False
+            )
             
             detections = []
             

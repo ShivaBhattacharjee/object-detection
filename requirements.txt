@@ -1,0 +1,7 @@
+# Fast Object Detection with YOLO + Smart Classification
+opencv-python>=4.9.0
+numpy>=1.26.0
+Pillow>=10.2.0
+ultralytics>=8.0.196  # YOLOv8 for fast detection
+torch>=2.1.0
+torchvision>=0.16.0

@@ -1,6 +1,6 @@
 # Dynamic Object Detection with Large Dataset Support
 
-Real-time object detection that goes **WAY BEYOND COCO's limited 80 classes**! Support for 300-1200+ object classes including comprehensive electronics detection.
+Real-time object detection 
 
 ## 🚀 Key Features
 
@@ -134,16 +134,6 @@ The system now dynamically adapts to any YOLO model:
 4. **Smart Classification**: Intelligently classifies and describes objects
 5. **Scene Analysis**: Generates natural language scene descriptions
 
-## 📁 Files
-
-- `app.py` - Main application with improved model info display
-- `fast_detector.py` - Dynamic YOLO detector (supports any model)
-- `smart_classifier.py` - Dynamic classification system (no hardcoded classes)
-- `config.py` - Configuration with model selection options
-- `test_dynamic_classes.py` - Test dynamic class loading functionality
-- `test.py` - System testing
-- `debug.py` - Debug and performance testing
-- `run.sh` - Startup script
 
 ## 📊 Example Output
 
